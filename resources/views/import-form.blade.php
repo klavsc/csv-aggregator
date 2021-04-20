@@ -19,11 +19,11 @@
                         Import
                     </div>
                     <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data" action="{{route('customer.import')}}">
+                        <form method="POST" enctype="multipart/form-data" id="file" action="{{route('customer.import')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Choose CSV</label>
-                                <input type="file" name="file"  class="form-control" multiple />
+                                <input type="file" name="file[]" id="file"  class="form-control" multiple />
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

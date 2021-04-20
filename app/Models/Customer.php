@@ -10,33 +10,18 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = "clients";
 
     protected $fillable = [
-        'name',
-        'surname',
+        'first_name',
+        'last_name',
         'email',
         'address',
         'city',
-        'gender',
-        'soc_security_num',
-        'balance',
+        'salutation',
+        'social_security_number',
+        'account_balance',
     ];
 
-    public static function getCustomer()
-    {
-        $records = DB::table('clients')->select(
-            'id',
-            'name',
-            'surname',
-            'email',
-            'address',
-            'city',
-            'gender',
-            'soc_security_num',
-            'balance',
-        );
-        return $records;
-    }
     public $timestamps = false;
+
 }

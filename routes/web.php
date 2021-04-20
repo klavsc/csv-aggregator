@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/import-form',[\App\Http\Controllers\CustomerController::class, 'importForm']);
 
 Route::post('/import',[\App\Http\Controllers\CustomerController::class,'import'])->name('customer.import');
+Route::post('/import',[\App\Http\Controllers\CustomerController::class,'import'])->name('customer.import');
+

@@ -13,16 +13,16 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('surname')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('salutation')->nullable();
-            $table->string('soc_security_num')->nullable();
-            $table->integer('balance')->nullable();
+            $table->string('social_security_number')->nullable();
+            $table->integer('account_balance')->nullable();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('customers');
     }
 }

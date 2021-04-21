@@ -2,57 +2,45 @@
 
 namespace Tests\Feature;
 
-use App\Models\Customer;
-use App\Models\User;
-use Tests\TestCase;
 
+use Tests\TestCase;
 
 
 class ExampleTest extends TestCase
 {
-
-    public function testCEOListedSuccessfully()
+    /**
+     @test
+     */
+    public function CustomerImportedSuccessfully()
     {
+        $data = [
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->firstName,
+            'email' => $this->faker->firstName,
+            'address' => $this->faker->firstName,
+            'city' => $this->faker->firstName,
+            'salutation' => $this->faker->firstName,
+            'social_security_number' => $this->faker->firstName,
+            'account_balance' => $this->faker->firstName,
 
+        ];
 
-       factory(Customer::class)->create([
-            "name" => "Susan Wojcicki",
-            "company_name" => "YouTube",
-            "year" => "2014",
-            "company_headquarters" => "San Bruno, California",
-            "what_company_does" => "Video-sharing platform",
-        ]);
+        $this->post(route('customer.import').$data)
+            ->assertStatus(201)
+            ->assertJson(compact('data'));
 
-        $user= factory(Customer::class)->create([
-            "name" => "Mark Zuckerberg",
-            "company_name" => "FaceBook",
-            "year" => "2004",
-            "company_headquarters" => "Menlo Park, California",
-            "what_company_does" => "The world's largest social network",
-        ]);
-
-        $this->json('GET', 'api/customer', ['Accept' => 'application/json'])
-            ->assertStatus(200)
-            ->assertJson([
-                "ceos" => [
-                    [
-                        "id" => 1,
-                        "name" => "Susan Wojcicki",
-                        "company_name" => "YouTube",
-                        "year" => "2014",
-                        "company_headquarters" => "San Bruno, California",
-                        "what_company_does" => "Video-sharing platform"
-                    ],
-                    [
-                        "id" => 2,
-                        "name" => "Mark Zuckerberg",
-                        "company_name" => "FaceBook",
-                        "year" => "2004",
-                        "company_headquarters" => "Menlo Park, California",
-                        "what_company_does" => "The world's largest social network"
-                    ]
-                ],
-                "message" => "Retrieved successfully"
-            ]);
+//        $customerImport = new CustomerController(new Customer);
+//        $customer = $customerImport->import($data);
+//
+//        $this->assertInstanceOf(Customer::class, $customer);
+//        $this->assertEquals($data['first_name'], $customer);
+//        $this->assertEquals($data['last_name'], $customer);
+//        $this->assertEquals($data['email'], $customer);
+//        $this->assertEquals($data['address'], $customer);
+//        $this->assertEquals($data['city'], $customer);
+//        $this->assertEquals($data['salutation'], $customer);
+//        $this->assertEquals($data['social_security_number'], $customer);
+//        $this->assertEquals($data['account_balance'], $customer);
+//
     }
 }

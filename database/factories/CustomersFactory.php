@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Factories;
+
 /** @var \Illuminate\Database\Eloquent\Factories\Factory $factory */
 
 use App\Models\Customer;

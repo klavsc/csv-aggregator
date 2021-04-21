@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Customer;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CustomerImport;
@@ -43,8 +42,13 @@ class CustomerController extends Controller
         //pattern to verify valid email address
         $pattern = '^[^@]+@[^@]+.[^@]{2,}$';
 
-        $customers = Customer::where('email', 'regexp', $pattern)->paginate(20);
-        return response($customers, 200);
+        return $customer = Customer::where('email', 'regexp', $pattern)->paginate(20);
+
+    }
+
+    public function pagination()
+    {
+        return view('customers-view');
     }
 
 }
